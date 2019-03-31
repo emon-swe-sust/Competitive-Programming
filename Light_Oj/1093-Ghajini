@@ -1,0 +1,99 @@
+#include<bits/stdc++.h>
+using namespace std;
+int arr[100001];
+int treeb[100001*3];
+int trees[100001*3];
+ 
+void initb(int node,int b,int e)
+{
+    if(b==e)
+    {
+        treeb[node] = arr[b];
+        return;
+    }
+    int mid = (b+e)/2;
+    int left = node*2;
+    int right = node*2+1;
+    initb(left,b,mid);
+    initb(right,mid+1,e);
+    treeb[node] = max(treeb[left],treeb[right]);
+    return;
+}
+ 
+void inits(int node,int b,int e)
+{
+    if(b==e)
+    {
+        trees[node] = arr[b];
+        return;
+    }
+    int mid = (b+e)/2;
+    int left = node*2;
+    int right = node*2+1;
+    inits(left,b,mid);
+    inits(right,mid+1,e);
+    trees[node] = min(trees[left],trees[right]);
+   // cout << trees[node] << endl;
+    return;
+}
+ 
+int queryb(int node,int b,int e,int i,int j)
+{
+    if(b > j || e < i)
+        return 0;
+    if(b >= i && e <= j)
+        return treeb[node];
+    int mid = (b+e)/2;
+    int left = node*2;
+    int right = node*2+1;
+    int p,q;
+    p = queryb(left,b,mid,i,j);
+    q = queryb(right,mid+1,e,i,j);
+    return max(p,q);
+}
+ 
+int querys(int node,int b,int e,int i,int j)
+{
+    if(b > j || e < i)
+        return INT_MAX;
+    if(b >= i && e <= j)
+        return trees[node];
+    int mid = (b+e)/2;
+    int left = node*2;
+    int right = node*2+1;
+    int p,q;
+    p = querys(left,b,mid,i,j);
+    q = querys(right,mid+1,e,i,j);
+    return min(p,q);
+}
+ 
+int main()
+{
+    int n,x;
+    cin >> n;
+    for(x=1;x<=n;x++)
+    {
+        int siz,que,i,j,k,best = INT_MIN,tempb,temps,temp;
+        cin >> siz >> que;
+        memset(arr,0,sizeof(arr));
+        memset(treeb,0,sizeof(treeb));
+        memset(trees,0,sizeof(trees));
+        for(i=1;i<=siz;i++)
+            cin >> arr[i];
+ 
+        initb(1,1,siz);
+        inits(1,1,siz);
+        for(i=1;i<=siz-que+1;i++)
+        {
+            tempb = queryb(1,1,siz,i,i+que-1);
+            temps = querys(1,1,siz,i,i+que-1);
+          //  cout << tempb << " " << temps << endl;
+            temp = tempb - temps;
+            if(temp > best)
+                best = temp;
+        }
+        cout << "Case " << x << ": " << best << endl;
+    }
+    return 0;
+}
+ 
