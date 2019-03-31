@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    int i,n;
+    scanf("%d",&n);
+    double a,b,c,d,area,x,y,z,p;
+    for(i=1;i<=n;i++)
+    {
+        scanf("%lf %lf %lf %lf",&a,&b,&c,&d);
+        x=(a+c)/2;
+        y=b*b-d*d+(a-c)*(a-c);
+        z=2*(a-c);
+        p=b*b-(y/z)*(y/z);
+        area=x*sqrt(p);
+        printf("Case %d: %lf\n",i,area);
+    }
+    return 0;
+}
