@@ -1,0 +1,71 @@
+#include<bits/stdc++.h>
+using namespace std;
+int arr[100002];
+int tree[100002*3];
+ 
+void init(int node,int b,int e)
+{
+    if(b == e)
+    {
+        tree[node] = arr[b];
+        return;
+    }
+    int mid = (b+e)/2;
+    int left = node*2;
+    int right = node*2+1;
+    init(left,b,mid);
+    init(right,mid+1,e);
+    tree[node] = min(tree[left],tree[right]);
+    return ;
+}
+ 
+int query(int node,int b,int e,int i,int j)
+{
+    if(b > j || e < i)
+    {
+        return INT_MAX;
+    }
+    if(b >= i && e <=j)
+    {
+        return tree[node];
+    }
+ 
+    int mid = (b+e)/2;
+    int left = node*2;
+    int right = node*2+1;
+    int p,q;
+ 
+    p = query(left,b,mid,i,j);
+    q = query(right,mid+1,e,i,j);
+    return min(p,q);
+}
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+ 
+    int test,x;
+    scanf("%d",&test);
+    for(x=1;x<=test;x++)
+    {
+        memset(arr,0,sizeof(arr));
+        memset(tree,0,sizeof(tree));
+        int siz,qu,i,j,k,temp;
+        scanf("%d %d",&siz,&qu);
+        for(i=1;i<=siz;i++)
+            scanf("%d",&arr[i]);
+ 
+        init(1,1,siz);
+ 
+        printf("Case %d:\n",x);
+        while(qu--)
+        {
+            scanf("%d %d",&i,&j);
+            temp = query(1,1,siz,i,j);
+                printf("%d\n",temp);
+        }
+    }
+    return 0;
+}
+ 
