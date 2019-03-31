@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main()
+{
+    int test,m,a,b,i,j,k;
+    char ch[27];
+    cin >> test;
+    for(m=0; m<test; m++)
+    {
+        cin >> a >> b;
+        for(i=0; i<a; i++)
+            ch[i]='A'+i;
+        ch[i]=NULL;
+        i=0;
+        cout << "Case " << m+1 << ":" << endl;
+        while(ch[i]!=NULL)
+        {
+            cout << ch[i];
+            i++;
+        }
+        cout << endl;
+        b--;
+        while(b-- && next_permutation(ch,ch+a))
+        {
+            i=0;
+            while(ch[i]!=NULL)
+            {
+                cout << ch[i];
+                i++;
+            }
+            cout << endl;
+        }
+    }
+    return 0;
+}
+ 
