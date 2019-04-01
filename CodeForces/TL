@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int m,n,highest=INT_MIN,high=INT_MIN,lowest=INT_MAX,low=INT_MAX,p,q;
+    cin >> m >> n;
+    while(m--)
+    {
+        cin >> p;
+        if(p > highest)
+            highest = p;
+        if(p < lowest)
+            lowest = p;
+    }
+    while(n--)
+    {
+        cin >> q;
+        if(q < low)
+            low= q;
+        if(q > high)
+            high = q;
+    }
+    if(lowest*2 > highest)
+        highest = lowest*2;
+    if(low <= highest)
+    {
+        cout << -1 << endl;
+        return 0;
+    }
+    if(lowest*2 <= highest)
+        cout << highest << endl;
+    else
+        cout << -1 << endl;
+    return 0;
+}
