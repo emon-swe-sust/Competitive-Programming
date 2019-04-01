@@ -1,0 +1,59 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,i,j,minn=INT_MAX,temp;
+    string str;
+    cin >> n;
+    cin >> str;
+    char a,b,c;
+    map<char,vector<int> > mp;
+
+    for(i=0;i<n;i++)
+    {
+        mp[str[i]].push_back(i+1);
+    }
+
+    char pack[]={'B','G','R'};
+    do
+    {
+        temp = 0;
+        for(i=0;i<mp[pack[0]].size();i++)
+        {
+            if(mp[pack[0]][i] % 3 != 0)
+                temp++;
+        }
+        for(i=0;i<mp[pack[1]].size();i++)
+        {
+            if(mp[pack[1]][i] % 3 != 1)
+                temp++;
+        }
+        for(i=0;i<mp[pack[2]].size();i++)
+        {
+            if(mp[pack[2]][i] % 3 != 2)
+                temp++;
+        }
+        if(minn > temp)
+        {
+            minn = temp;
+            a = pack[1];
+            b = pack[2];
+            c = pack[0];
+        }
+    }while(next_permutation(pack,pack+3));
+
+    cout << minn << endl;
+    for(i=0;i<n;i++)
+    {
+            cout << a;
+        i++;
+        if(i < n)
+            cout << b;
+        i++;
+        if(i < n)
+            cout << c;
+    }
+    cout << endl;
+    return 0;
+}
