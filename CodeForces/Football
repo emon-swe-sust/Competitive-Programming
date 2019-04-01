@@ -1,0 +1,38 @@
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char team[100];
+    scanf("%s",team);
+
+    int l,i,flag=1,mark=1;
+    l=strlen(team);
+
+    for(i=0;i<l;i++)
+    {
+        if(team[i]=='1')
+        {
+            mark=0;
+            flag++;
+            if(flag==7)
+                break;
+        }
+
+         if(team[i]=='0')
+        {
+            mark++;
+            flag=0;
+            if(mark==7)
+                break;
+        }
+    }
+
+    if(mark==7||flag==7)
+        printf("YES");
+    else
+        printf("NO");
+
+    return 0;
+
+}
