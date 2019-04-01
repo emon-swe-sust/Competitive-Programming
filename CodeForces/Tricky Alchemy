@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long yecr,blcr,ye,gr,bl,yellow=0,blue=0,x,y;
+    cin >> yecr >> blcr >> ye >> gr >> bl;
+    yellow=ye*2+gr;
+    blue=gr+3*bl;
+    if(yellow > yecr)
+        x = yellow - yecr;
+    else
+        x = 0;
+    if(blue > blcr)
+        y = blue - blcr;
+    else
+        y = 0;
+    if( x >= 0)
+        cout << x+y << endl;
+    else
+        cout << 0 << endl;
+    return 0;
+}
