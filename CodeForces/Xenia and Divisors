@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,k,l,m;
+    int arr[8] = {0};
+    cin >> n;
+    l=n;
+    while(n--)
+    {
+        cin >> k;
+        arr[k]++;
+    }
+    if(arr[5] >= 1 || arr[7] >= 1 || arr[1] != l/3 || arr[3] > arr[6])
+    {
+        cout << -1 << endl;
+        return 0;
+    }
+    vector<int>vec;
+    while(arr[1]>0&&arr[2]>0&&arr[4]>0)
+    {
+        vec.push_back(1);
+        vec.push_back(2);
+        vec.push_back(4);
+        arr[1]--;
+        arr[2]--;
+        arr[4]--;
+    }
+    if(arr[4]!=0)
+    {
+        cout << -1 << endl;
+        return 0;
+    }
+     while(arr[1]>0&&arr[2]>0&&arr[6]>0)
+    {
+        vec.push_back(1);
+        vec.push_back(2);
+        vec.push_back(6);
+        arr[1]--;
+        arr[2]--;
+        arr[6]--;
+    }
+     if(arr[2]!=0)
+    {
+        cout << -1 << endl;
+        return 0;
+    }
+     while(arr[1]>0&&arr[3]>0&&arr[6]>0)
+    {
+        vec.push_back(1);
+        vec.push_back(3);
+        vec.push_back(6);
+        arr[1]--;
+        arr[3]--;
+        arr[6]--;
+    }
+    if(arr[1]!=0 || arr[3] !=0 || arr[6]!=0)
+    {
+        cout << -1 << endl;
+        return 0;
+    }
+    for(int i=1;i<=vec.size();i++)
+    {
+        printf("%d ",vec[i-1]);
+        if(i%3==0)
+            cout << endl;
+    }
+    return 0;
+}
