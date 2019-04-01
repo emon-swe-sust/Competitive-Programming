@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int test;
+    cin >> test;
+    while(test--)
+    {
+        int num,i,j,k,l,m,mm=0;
+        cin >> num;
+        bool b=false,e=false;
+        string str;
+        cin >> str;
+        for(i=0;i<num;i++)
+        {
+            if(str[i] == '>')
+            {
+                k = i;
+                b = true;
+                break;
+            }
+        }
+        k = num - k;
+        for(i=num-1;i>=0;i--)
+        {
+            if(str[i] == '<')
+            {
+                m = i;
+                e = true;
+                break;
+            }
+        }
+        m++;
+        if(!b || !e)
+        {
+            cout << 0 << endl;
+            goto here;
+        }
+
+        cout << num-max(k,m) << endl;
+        here:;
+    }
+    return 0;
+    
+}
