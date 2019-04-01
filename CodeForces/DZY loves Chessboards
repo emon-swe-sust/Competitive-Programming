@@ -1,0 +1,53 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,m,i,j,k,l;
+    char ch;
+    cin >> n >> m;
+    vector<char>vec[n];
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<m;j++)
+        {
+            cin >> ch;
+            vec[i].push_back(ch);
+        }
+    }
+    for(i=0;i<n;i+=2)
+    {
+        for(j=0;j<m;j++)
+        {
+            if(vec[i][j] == '.')
+            {
+                if(j%2 == 0)
+                    vec[i][j] = 'W';
+                else
+                    vec[i][j] = 'B';
+            }
+        }
+    }
+    for(i=1;i<n;i+=2)
+    {
+        for(j=0;j<m;j++)
+        {
+            if(vec[i][j] == '.')
+            {
+                if(j%2 == 0)
+                    vec[i][j] = 'B';
+                else
+                    vec[i][j] = 'W';
+            }
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+        for(j=0;j<m;j++)
+        {
+            cout << vec[i][j];
+        }
+        cout << endl;
+    }
+    return 0;
+}
