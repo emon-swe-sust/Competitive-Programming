@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int i,j,k,l,m,n,space1,st;
+    cin >> n;
+    space1=n;
+    for(i=0;i<n+1;i++)
+    {
+        for(j=0;j<space1;j++)
+            cout << "  ";
+        if(space1 == n)
+        {
+            cout << 0;
+            goto here;
+        }
+        st=0;
+        while(st!=n-space1)
+        {
+            cout << st << " ";
+            st++;
+        }
+        while(st!=0)
+        {
+            cout << st << " ";
+            st--;
+        }
+        cout << 0;
+        here:
+        cout << endl;
+        space1--;
+    }
+    for(i=1;i<n;i++)
+    {
+        for(j=0;j<i;j++)
+            cout << "  ";
+        st=0;
+        for(j=0;j<=n-i;j++)
+        {
+            cout << st <<" ";
+            st++;
+        }
+        st--;
+        while(st!=1)
+        {
+            st--;
+            cout << st << " ";
+        }
+        cout << 0;
+        cout << endl;
+    }
+    for(i=0;i<n;i++)
+        cout << "  ";
+    cout << 0;
+    return 0;
+}
