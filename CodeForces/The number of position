@@ -1,0 +1,12 @@
+#include<stdio.h>
+int main()
+{
+    int n,b,c,x;
+    scanf("%d %d %d",&n,&b,&c);
+    if((c+b)<n)
+    x=c+1;
+    else
+    x=n-b;
+    printf("%d",x);
+    return 0;
+}
