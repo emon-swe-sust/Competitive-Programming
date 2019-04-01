@@ -1,3 +1,5 @@
+//Use faster I/O method
+
 #include<bits/stdc++.h>
 using namespace std;
 int arr[300003];
