@@ -1,0 +1,50 @@
+#include<stdio.h>
+
+int main()
+{
+    int n,m,i,k,j,flag=1,mark,maark=2;
+    scanf("%d %d",&n,&m);
+
+    for(i=2;i<m;i++)
+    {
+        if(m%i==0)
+        {
+            flag=2;
+            break;
+        }
+    }
+
+    if(flag==1)
+    {
+       for(i=n+1;i<m;i++)
+       {
+            mark=1;
+            for(j=2;j<i;j++)
+            {
+                if(i%j==0)
+                {
+                    mark=2;
+                    break;
+                }
+            }
+            if(mark==1)
+            {
+                printf("NO");
+                maark=0;
+                break;
+            }
+       }
+    }
+
+    else
+    {
+        printf("NO");
+        maark=0;
+    }
+
+    if(maark==2)
+        printf("YES");
+
+
+    return 0;
+}
