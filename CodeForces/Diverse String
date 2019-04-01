@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int siz;
+    cin >> siz;
+    while(siz--)
+    {
+        string str;
+        cin >> str;
+        int i,arr[28],minn = INT_MAX,maxx = INT_MIN;
+        memset(arr,0,sizeof(arr));
+        for(i = 0; i<str.size(); i++)
+        {
+            arr[str[i]-'a']++;
+            minn = min((str[i]-'a'),minn);
+                        maxx = max(maxx, (str[i]-'a'));
+        }
+                   for(i=minn; i<=maxx; i++)
+        {
+            if(arr[i] != 1)
+            {
+                cout << "No" << endl;
+                goto here;
+            }
+        }
+        cout << "Yes" << endl;
+here:
+        ;
+    }
+}
