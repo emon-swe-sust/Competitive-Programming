@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string a,b="hello";
+    cin >> a;
+    int i,k=0;
+    for(i=0;i<a.size();i++)
+    {
+        if(a[i]==b[k])
+        {
+            k++;
+        }
+    }
+    if(k == b.size())
+        cout << "YES" << endl;
+    else
+        cout << "NO" << endl;
+    return 0;
+}
