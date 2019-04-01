@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<math.h>
+
+int main()
+{
+    int n,m,l,sum1=0,sum2=0,sum3=0;
+    scanf("%d",&n);
+    int i[n],j[n],k[n];
+
+    for(m=0;m<n;m++)
+    {
+        scanf("%d %d %d",&i[m],&j[m],&k[m]);
+    }
+
+    for(m=0;m<n;m++)
+    {
+        sum1=sum1+i[m];
+        sum2=sum2+j[m];
+        sum3=sum3+k[m];
+    }
+
+    if(sum1==0&&sum2==0&&sum3==0)
+        printf("YES");
+    else
+        printf("NO");
+
+        return 0;
+}
