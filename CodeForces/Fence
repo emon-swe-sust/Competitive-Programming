@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,k,i,min=INT_MAX,ans;
+    vector<long long>vec;
+    long long j,temp;
+    cin >> n >> k;
+    for(i=0;i<n;i++)
+    {
+        cin >> j;
+        if(vec.size()==0)
+            vec.push_back(j);
+        else
+        {
+            int te;
+            te = vec[vec.size()-1];
+            vec.push_back(j+te);
+        }
+    }
+    temp = vec[k-1] - 0;
+    if(temp < min)
+        {
+            min = temp;
+            ans = 1;
+        }
+    for(i=k;i<vec.size();i++)
+    {
+       temp = vec[i] - vec[i-k];
+        if(temp < min)
+        {
+            min = temp;
+            ans = i-k+2;
+        }
+    }
+    cout << ans << endl;
+    return 0;
+}
