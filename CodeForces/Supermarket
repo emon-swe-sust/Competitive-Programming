@@ -1,0 +1,29 @@
+#include<stdio.h>
+int main()
+{
+	int a,b;
+	scanf("%d %d",&a,&b);
+	int i,j;
+	float n[a],x,y,cost,temp;
+	for(i=0;i<a;i++)
+	{
+		scanf("%f %f",&x,&y);
+		n[i]=x/y;
+	}
+	for(i=0;i<a;i++)
+	{
+		for(j=i+1;j<a;j++)
+		{
+			if(n[i]<n[j])
+			{
+				temp=n[i];
+				n[i]=n[j];
+				n[j]=temp;
+			}
+		}
+	}
+	cost=n[a-1]*b;
+	printf("%f",cost);
+	return 0;
+
+}
