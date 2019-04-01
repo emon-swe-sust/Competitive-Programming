@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string head,txt;
+    int i,j,k;
+    getline(cin,head);
+    getline(cin,txt);
+    map<char,int> mp,md;
+    for(i=0;i<head.size();i++)
+    {
+        if(head[i] != '0')
+            mp[head[i]]++;
+    }
+    for(i=0;i<txt.size();i++)
+    {
+        if(txt[i] != ' ')
+        {
+            md[txt[i]]++;
+            if(mp[txt[i]] < md[txt[i]])
+            {
+                cout << "NO" << endl;
+                return 0;
+            }
+        }
+    }
+    cout << "YES" << endl;
+    return 0;
+}
