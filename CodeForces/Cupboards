@@ -1,0 +1,43 @@
+#include<stdio.h>
+
+int main()
+{
+    int n,i,j,a1=0,a0=0,b1=0,b0=0,ans;
+
+    scanf("%d",&n);
+
+    int a[n],b[n];
+
+    for(i=0;i<n;i++)
+    {
+        scanf("%d %d",&a[i],&b[i]);
+    }
+
+    for(i=0;i<n;i++)
+    {
+        if(a[i]==0) a0++;
+        if(a[i]==1) a1++;
+        if(b[i]==0) b0++;
+        if(b[i]==1) b1++;
+    }
+
+    if(a0>a1)
+    {
+        if(b0>b1)
+            ans=a1+b1;
+        else
+            ans=a1+b0;
+    }
+
+    else
+    {
+        if(b0>b1)
+            ans=a0+b1;
+        else
+            ans=a0+b0;
+    }
+
+    printf("%d",ans);
+
+    return 0;
+}
