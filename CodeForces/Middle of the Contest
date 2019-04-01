@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string start,endd;
+    cin >> start >> endd;
+    int sthour,stmin,enhour,enmin,i,j,k,l,hour,minn,anshour,ansmin;
+
+    sthour=(start[0]-'0')*10+start[1]-'0';
+    stmin=(start[3]-'0')*10+start[4]-'0';
+    enhour=(endd[0]-'0')*10+endd[1]-'0';
+    enmin=(endd[3]-'0')*10+endd[4]-'0';
+
+    if(enhour != sthour)
+    {
+        minn = 60 - stmin;
+        minn+=(enhour - sthour-1)*60 + enmin;
+    }
+    else
+    {
+        minn = enmin - stmin;
+    }
+    minn /= 2;
+
+    stmin += minn;
+    ansmin = stmin % 60;
+    anshour = sthour + stmin/60;
+
+    if(anshour < 10)
+        cout << 0 << anshour << ':';
+    else
+        cout << anshour << ':';
+    if(ansmin < 10)
+        cout << 0 << ansmin << endl;
+    else
+        cout << ansmin << endl;
+    return 0;
+}
