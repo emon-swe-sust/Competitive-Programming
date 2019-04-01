@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int i,j,k,l,m,n,ans=INT_MIN,temp;
+    map<int,int>mp;
+    cin >> n;
+    vector<int>vec;
+    for(i=0;i<n;i++)
+    {
+        cin >> m;
+        vec.push_back(m);
+        mp[m]++;
+    }
+    sort(vec.begin(),vec.end());
+    {
+        for(i=0;i<vec.size();i++)
+        {
+            temp = mp[vec[i]]+mp[vec[i]-1]+mp[vec[i]-2]+mp[vec[i]-3]+mp[vec[i]-4]+mp[vec[i]-5];
+            if(temp > ans)
+                ans = temp;
+        }
+    }
+    cout << ans << endl;
+}
