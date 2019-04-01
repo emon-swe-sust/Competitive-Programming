@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long t,x,y,xx,yy,i,j,k,ans=0,dx,dy,gx,gy;
+    cin >> t >> x >> y >> xx >> yy;
+    string side;
+    cin >> side;
+    dx = xx-x;
+    dy = yy-y;
+    for(i=0; i<side.size(); i++)
+    {
+        if(side[i] == 'E' || side[i] == 'W')
+        {
+            if(dx > 0 && x != xx)
+            {
+                if(side[i] == 'E')
+                {
+                    x++;
+                    ans++;
+                }
+                else
+                    ans++;
+            }
+            else if(dx < 0 && x != xx)
+            {
+                if(side[i] == 'W')
+                {
+                    x--;
+                    ans++;
+                }
+                else
+                    ans++;
+            }
+            else
+            {
+                if(y!=yy)
+                    ans++;
+            }
+        }
+        else
+        {
+            {
+                if(dy > 0 && y != yy)
+                {
+                    if(side[i] == 'N')
+                    {
+                        y++;
+                        ans++;
+                    }
+                    else
+                        ans++;
+                }
+                else if(dy < 0 && y != yy)
+                {
+                    if(side[i] == 'S')
+                    {
+                        y--;
+                        ans++;
+                    }
+                    else
+                        ans++;
+                }
+                else
+                {
+                    if(x!=xx)
+                        ans++;
+                }
+            }
+        }
+        if(x == xx && y == yy)
+        {
+            cout << ans << endl;
+            return 0;
+        }
+    }
+    cout << -1 << endl;
+    return 0;
+}
