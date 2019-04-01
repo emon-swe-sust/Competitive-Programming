@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+int arr[20];
+int chk[20];
+int tree[20*5];
+int maxx=INT_MIN;
+
+void findmax(int b,int e)
+{
+    if(b > e)
+        return;
+   // cout << chk[e] << " " <<chk[b] << " " << e << " " << b << endl;
+    if((chk[e]-chk[b]+1) == e-b+1)
+    {
+        if((e-b+1) > maxx)
+            maxx = e-b+1;
+      //  cout << maxx << " ";
+        return;
+    }
+    int mid = (b+e)/2;
+    findmax(b,mid);
+    findmax(mid+1,e);
+    return;
+}
+
+int main()
+{
+    int siz,i,j,k,l;
+    cin >> siz;
+    for(i = 1;i <= siz;i++)
+        cin >> arr[i];
+    chk[1] = 1;
+    for(i=2;i<=siz;i++)
+    {
+        if(arr[i] >= arr[i-1])
+        {
+            chk[i] = chk[i-1]+1;
+        }
+        else
+            chk[i] = 1;
+    }
+    findmax(1,siz);
+    cout << maxx << endl;
+    return 0;
+}
+close
