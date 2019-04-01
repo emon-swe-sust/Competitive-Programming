@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,d,i,j,step=0,trace;
+    cin >> n >> d;
+    char mat[n];
+
+    for(i=0;i<n;i++)
+    {
+        cin >> mat[i];
+    }
+
+    trace=0;
+    i=0;
+    while(1)
+    {
+        j=i;
+        i=i+d;
+        while(1)
+        {
+            if(mat[i] == '1')
+            {
+                trace++;
+                break;
+            }
+            else i--;
+            if( i == j)
+                goto here;
+        }
+        if(i >= (n-1))
+            break;
+    }
+    here:
+    if(i != (n-1))
+        trace = -1;
+    if(trace != 0)
+        cout << trace << endl;
+    else
+        cout << -1 << endl;
+    return 0;
+    }
