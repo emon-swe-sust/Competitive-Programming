@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int node,vr,z,cnt,i,j,child=1,vl,ans=0;
+    cin >> node;
+    cnt=node;
+    vector<int>vec[node];
+    node--;
+    while(node--)
+    {
+        cin >> vl;
+        if(child != vl-1)
+            vec[vl-1].push_back(child);
+        child++;
+    }
+
+    for(i=0;i<cnt;i++)
+    {
+        ans=0;
+        if(!vec[i].empty())
+        {
+            for(j=0;j<vec[i].size();j++)
+            {
+                z=vec[i][j];
+                if(!vec[z].empty())
+                    ans++;
+            }
+            if(vec[i].size()-ans < 3)
+            {
+                cout << "No" << endl;
+                return 0;
+            }
+        }
+    }
+        cout << "Yes" << endl;
+    return 0;
+}
