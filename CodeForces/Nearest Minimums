@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,i,j,small = INT_MAX,x,y,z=INT_MAX;
+    priority_queue<int, vector<int>, greater<int> >q;
+    cin >> n;
+    int mat[n];
+    for(i=0 ; i < n ; i++)
+    {
+        cin >> mat[i];
+        if(mat[i] < small)
+            small = mat[i];
+    }
+    for(i=0 ; i<n ; i++)
+    {
+        if(small == mat[i])
+            q.push(i);
+    }
+    while(!q.empty())
+    {
+        x=q.top();
+        q.pop();
+        if(!q.empty())
+        {
+            y=q.top();
+            if((y-x) < z)
+                z=y-x;
+        }
+    }
+
+    cout << z << endl;
+    return 0;
+}
