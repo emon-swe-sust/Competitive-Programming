@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<string.h>
+
+int main()
+{
+    char w[100];
+    scanf("%s",w);
+
+    int i,j,k,m=0,n=0;
+
+    k=strlen(w);
+
+    for(i=0;i<k;i++)
+    {
+        if(w[i]>64&&w[i]<91)
+            m++;
+        else if(w[i]>96&&w[i]<123)
+            n++;
+    }
+
+    if(m>n)
+    {
+       for(i=0;i<k;i++)
+       {
+           if(w[i]>96&&w[i]<123)
+               w[i]=w[i]-32;
+       }
+    }
+
+    else
+    {
+        for(i=0;i<k;i++)
+        {
+            if(w[i]>64&&w[i]<91)
+                w[i]=w[i]+32;
+        }
+    }
+
+    printf("%s",w);
+
+    return 0;
+}
