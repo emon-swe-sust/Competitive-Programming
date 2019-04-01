@@ -1,0 +1,23 @@
+#include<stdio.h>
+
+int main()
+{
+    int n,k,l,c,d,p,nl,np,ans,ml,ms,msl;
+
+    scanf("%d %d %d %d %d %d %d %d",&n,&k,&l,&c,&d,&p,&nl,&np);
+
+    ml=(k*l)/nl;
+    ms=p/np;
+    msl=c*d;
+
+    if(ml<=ms&&ml<=msl)
+        ans=ml;
+    else if(ms<=ml&&ms<=msl)
+        ans=ms;
+    else
+        ans=msl;
+
+    printf("%d",ans/n);
+
+    return 0;
+}
