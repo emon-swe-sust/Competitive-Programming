@@ -1,0 +1,125 @@
+#include<bits/stdc++.h>
+using namespace std;
+long long arr[30003];
+long long tree[30003*4];
+long long ans;
+ 
+void init(long long node,long long b,long long e)
+{
+    if(b == e)
+    {
+        tree[node] = b;
+        return;
+    }
+    long long mid,left,right;
+    mid = (b+e)/2;
+    left = node*2;
+    right = node*2+1;
+    init(left,b,mid);
+    init(right,mid+1,e);
+    //cout << arr[tree[left]] << " " << arr[tree[right]] << "S"<< endl;
+    int q,w;
+    q = tree[left],w = tree[right];
+    if(arr[q] > arr[w])
+        tree[node] = w;
+    else
+        tree[node] = q;
+    return;
+}
+ 
+long long query(int node,int b,int e,int i,int j)
+{
+    if(i > j)
+        return 0;
+    if(b > j || e < i)
+    {
+        return 0;
+    }
+    if(b >= i && e <= j)
+    {
+        return tree[node];
+    }
+    long long mid = (b+e)/2,left = node*2,right = left+1;
+    long long p,q;
+    p = query(left,b,mid,i,j);
+    q = query(right,mid+1,e,i,j);
+    if(arr[p] > arr[q])
+        return q;
+    else
+        return p;
+}
+
+
+/*
+long long maxsiz(int b,int e,int siz)
+{
+    if(b>e) return 0;
+    int indx=query(1,1,siz,b,e);
+    return max((e-b+1)*arr[indx],max(maxsiz(b,indx-1,siz),maxsiz(indx+1,e,siz)));
+}
+*/
+ 
+void maxsiz(int node,int b,int e,int s,int n)
+{
+    long long tempx,temp;
+    if(b>e)
+        return;
+    if(b == e)
+    {
+        if(arr[b] > ans)
+            ans = arr[b];
+        return;
+    }
+    long long k,l;
+    tempx = arr[node] * (e-b+1);
+    long long p = query(1,s,n,b,node-1);
+   // cout << "NODe " << node << endl;
+    if(p!=0)
+    {
+        k = arr[p] * (node-b);
+    }
+    else
+    {
+        k = 0;
+    }
+   // cout << k << " " << b << " " << node-1 << " " << p << endl ;
+    long long q = query(1,s,n,node+1,e);
+    if(q!=0)
+        l = arr[q] * (e-node);
+    else l = 0;
+    temp = max(max(k,l),tempx);
+   // cout << tempx << " line " << k << " " << l << endl;
+    //cout << temp << " " << q << " " << p << endl;
+ 
+    if(temp > ans)
+        ans = temp;
+    if(p!=0)
+        maxsiz(p,b,node-1,s,n);
+    if(q!=0)
+        maxsiz(q,node+1,e,s,n);
+    return;
+}
+ 
+int main()
+{
+    long long test,x;
+    cin >> test;
+    for(x=1;x<=test;x++)
+    {
+        ans = 0;
+        memset(arr,0,sizeof(arr));
+        memset(tree,0,sizeof(tree));
+        arr[0] = 100000000000000000;
+        long long siz,i,j,k,l;
+        cin >> siz;
+        for(i=1;i<=siz;i++)
+        {
+            cin >> arr[i];
+        }
+        init(1,1,siz);
+        maxsiz(tree[1],1,siz,1,siz);
+        cout << "Case " << x << ": ";
+        cout << ans << endl;
+    }
+    return 0;
+}
