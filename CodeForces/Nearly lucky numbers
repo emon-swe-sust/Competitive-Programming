@@ -1,0 +1,31 @@
+#include<stdio.h>
+
+int main()
+{
+    long long int a;
+    scanf("%lld",&a);
+
+    int i=0,mark=1;
+
+    for(;a>0;)
+    {
+        if(a%10==4||a%10==7)
+        {
+            i++;
+        }
+        a=a/10;
+    }
+
+    if(i==0) mark=3;
+
+    for(;i>0;)
+    {
+        if(i%10!=4&&i%10!=7) mark=2;
+        i=i/10;
+    }
+
+    if(mark==1) printf("YES");
+    else printf("NO");
+
+    return 0;
+}
