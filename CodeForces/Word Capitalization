@@ -1,0 +1,15 @@
+#include<stdio.h>
+
+int main()
+{
+    char p[1000];
+
+    scanf("%s",p);
+
+    if(p[0]>'Z')
+        p[0]=p[0]-32;
+
+    printf("%s",p);
+
+    return 0;
+}
