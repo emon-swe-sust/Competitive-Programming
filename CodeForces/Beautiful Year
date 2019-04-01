@@ -1,0 +1,23 @@
+#include<stdio.h>
+int main()
+{
+    int o,n,a,b,c,p,x,y,z,w;
+    scanf("%d",&o);
+    for(n=o+1;;n++)
+    {
+        p=n;
+        x=p%10;
+        a=p/10;
+        y=a%10;
+        b=a/10;
+        z=b%10;
+        w=b/10;
+        if(x!=y&&x!=z&&x!=w&&y!=z&&y!=w&&z!=w)
+        {
+            printf("%d",n);
+            break;
+        }
+
+    }
+    return 0;
+}
