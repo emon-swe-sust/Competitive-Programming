@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int m,n,i,j,diff,minn=INT_MAX;
+    cin >> n >> m;
+    vector<int> vec;
+    for(i=0;i<m;i++)
+    {
+        cin >> j;
+        vec.push_back(j);
+    }
+    if(n == 1)
+    {
+        cout << 0 << endl;
+        return 0;
+    }
+    sort(vec.begin(),vec.end());
+    if(n==m)
+    {
+        cout << vec[vec.size()-1]-vec[0] << endl;
+        return 0;
+    }
+    for(i=0;i<(m-n)+1;i++)
+    {
+        diff = vec[i+n-1]-vec[i];
+        if(diff < minn)
+            minn=diff;
+          //  cout << vec[i+n-1] << " " << vec[i] << " " << diff << endl;
+    }
+    cout << minn << endl;
+    return 0;
+}
