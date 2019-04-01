@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string in;
+    int i,j,k,ans=0,n;
+    cin >> n >> in;
+    for(i=0;i<n;i++)
+    {
+        if((in[i]-'0') % 2 == 0)
+        {
+            ans = ans + 1 + i;
+        }
+    }
+    cout << ans << endl;
+    return 0;
+}
