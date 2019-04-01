@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int>vec;
+
+void sieve()
+{
+    bool prime[1500005];
+    int i,j;
+    memset(prime,true,sizeof(prime));
+    for(i=2;i*i<=1500005;i++)
+    {
+        if(prime[i] == true)
+        {
+            for(j=i*i;j<=1500005;j=j+i)
+            {
+                prime[j] = false;
+            }
+        }
+    }
+    vec.push_back(2);
+    for(i=3;i<=1500005;i+=2)
+    {
+        if(prime[i])
+            vec.push_back(i);
+    }
+
+    return ;
+}
+
+int main()
+{
+    int n,i,j;
+    cin >> n;
+    sieve();
+    for(i=0;i<n-1;i++)
+        cout << vec[i]<< " ";
+    cout << vec[i] << endl;
+    return 0;
+}
