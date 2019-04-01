@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    char qs[9][9];
+    int i,j,m,n,my,nx,x,y,zon,chk=0;
+    for(i=0;i<9;i++)
+    {
+        for(j=0;j<9;j++)
+            cin >> qs[i][j];
+    }
+    cin >> m >> n;
+    my=m-1;
+    nx=n-1;
+    y=(my%3);
+    x=(nx%3);
+    x=x*3;
+    y=y*3;
+   // cout << x << " " << y;
+    for(i=y;i<y+3;i++)
+    {
+        for(j=x;j<x+3;j++)
+        {
+            if(qs[i][j]=='.')
+            {
+                qs[i][j] = '!';
+                chk++;
+            }
+        }
+    }
+    if(chk == 0)
+    {
+        for(i=0;i<9;i++)
+        {
+            for(j=0;j<9;j++)
+            {
+                if(qs[i][j] == '.')
+                    qs[i][j] = '!';
+            }
+        }
+    }
+
+
+    for(i=0;i<9;i++)
+    {
+        for(j=0;j<9;j++)
+        {
+            cout << qs[i][j];
+            if(j%3 == 2)
+                cout << " ";
+        }
+        cout << endl;
+        if(i%3 == 2)
+            cout << endl;
+    }
+    return 0;
+}
