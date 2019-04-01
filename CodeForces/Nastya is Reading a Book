@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int chp,i,j,k,s,e;
+    cin >> chp;
+    int *arr = new int[chp];
+    for(i=0;i<chp;i++)
+    {
+        cin >> s >> e;
+        arr[i] = e;
+    }
+    cin >> k;
+    for(i=0;i<chp;i++)
+    {
+        if(arr[i]+1 > k)
+            break;
+    }
+    i = (chp - i);
+    cout << i << endl;
+    return 0;
+}
