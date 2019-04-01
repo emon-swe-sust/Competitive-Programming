@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long int siz=0,j,k,n,m,ans=1;
+    cin >> n >> k;
+
+    if(k==1)
+    {
+        cout<<n;
+        return 0;
+    }
+
+    m=1;
+    while(n!=0)
+    {
+        siz++;
+        n/=2;
+    }
+    while(siz--)
+    {
+        ans=ans*2;
+    }
+    ans--;
+
+    cout << ans;
+
+    return 0;
+}
