@@ -1,0 +1,16 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string a;
+    int i,cnt=0;
+    cin >> a;
+    for(i=0;i<a.size();i++)
+    {
+        if((a[i]-'0'!=0 && a[i]-'0' >=0 && a[i]-'0' <= 9 && (a[i]-'0')%2==1)|| a[i] == 'a' || a[i] == 'e' || a[i] == 'i' || a[i] == 'o' || a[i] == 'u')
+            cnt++;
+    }
+    cout << cnt << endl;
+    return 0;
+}
