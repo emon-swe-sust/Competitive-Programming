@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long n,i,j,sum=0;
+    cin >> n;
+    vector<long long>odd,even;
+    for(i=0;i<n;i++)
+    {
+        cin >> j;
+        if(j%2 == 0)
+            even.push_back(j);
+        else
+            odd.push_back(j);
+    }
+    sort(even.begin(),even.end());
+    sort(odd.begin(),odd.end());
+    if(even.size() > odd.size())
+    {
+        long long temp = even.size() - odd.size();
+        for(j = 0;j < temp-1;j++)
+        {
+            sum+=even[j];
+        }
+    }
+    else
+    {
+
+        long long temp =  odd.size() - even.size() ;
+        for(j = 0;j < temp-1;j++)
+        {
+            sum+=odd[j];
+        }
+    }
+    cout << sum << endl;
+}
