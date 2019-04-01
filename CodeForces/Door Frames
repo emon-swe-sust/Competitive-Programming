@@ -1,0 +1,77 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int a,n,b,i=0,j,na,nb,arr[6],k,l,nbb=0,naa=0,sum=0;
+    cin >> n >> a >> b;
+    for(i=0; i<4; i++)
+        arr[i]=a;
+    i=0;
+    arr[4]=b;
+    arr[5]=b;
+
+    if(b > a)
+    {
+        swap(a,b);
+        na=2;
+        nb=4;
+    }
+    else
+    {
+        na=4;
+        nb=2;
+    }
+    j=n;
+    while(next_permutation(arr,arr+6))
+    {
+        sum=0;
+        for(k=0; k<6,sum < n; k++)
+            sum=sum+arr[k];
+
+        if(sum == n)
+        {
+            naa=0;
+            nbb=0;
+            for(l=0; l<k; l++)
+            {
+                if(arr[l] == a)
+                    naa++;
+                else
+                    nbb++;
+            }
+            if(nbb != 0 && naa !=0)
+            {
+                while(na >= 0 && nb >= 0 && na >= naa && nb >= nbb)
+                {
+                    na=na-naa;
+                    nb=nb-nbb;
+                    i++;
+                }
+                break;
+            }
+        }
+    }
+    j=n;
+    for(;;)
+    {
+        while(j >= a && na != 0)
+        {
+            j=j-a;
+            na--;
+        }
+        while(j >= b && nb != 0)
+        {
+            j=j-b;
+            nb--;
+        }
+        if(j != n)
+            i++;
+        if(na == 0 && nb == 0)
+            break;
+        j=n;
+    }
+
+    cout << i << endl;
+    return 0;
+}
