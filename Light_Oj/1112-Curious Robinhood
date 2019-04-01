@@ -1,0 +1,98 @@
+#include<bits/stdc++.h>
+using namespace std;
+int arr[300003];
+int tree[300003*3];
+bool ok = true;
+
+void init(int node,int b,int e)
+{
+    if(b > e)
+        return ;
+    if(e == b)
+    {
+        tree[node] = arr[b];
+        return ;
+    }
+    int left = node*2 ,right = node*2+1,mid = (b+e)/2;
+    init(left,b,mid);
+    init(right,mid+1,e);
+    tree[node] = tree[left] + tree[right];
+    return ;
+}
+
+void update(int node,int b,int e,int i,int val)
+{
+    if(b > i|| e < i)
+    {
+        return ;
+    }
+    if(b == i && e == i)
+    {
+        if(ok)
+            tree[node] += val;
+        else
+            tree[node] = 0;
+        return ;
+    }
+    int left = node*2 ,right = node*2+1,mid = (b+e)/2;
+    update(left,b,mid,i,val);
+    update(right,mid+1,e,i,val);
+    tree[node] = tree[left] + tree[right];
+    return ;
+}
+
+int query(int node,int b,int e,int i,int j)
+{
+     if(b > j || e < i)
+    {
+        return 0 ;
+    }
+    if(b >= i && e <= j)
+    {
+        return tree[node];
+    }
+    int left = node*2 ,right = node*2+1,mid = (b+e)/2,p,q;
+    p = query(left,b,mid,i,j);
+    q = query(right,mid+1,e,i,j);
+    return p+q;
+}
+
+int main()
+{
+    int test,x;
+    scanf("%d",&test);
+    for(x=1;x<=test;x++)
+    {
+        int siz,q,i,j,k,l;
+        scanf("%d %d",&siz,&q);
+        for(i=1;i<=siz;i++)
+            scanf("%d",&arr[i]);
+
+        init(1,1,siz);
+        printf("Case %d:\n",x);
+        while(q--)
+        {
+            int a,b,c;
+            scanf("%d",&a);
+            if(a == 1)
+            {
+                ok = false;
+                scanf("%d",&b);
+                printf("%d\n",query(1,1,siz,b+1,b+1));
+                update(1,1,siz,b+1,0);
+                ok = true;
+            }
+            else if(a == 2)
+            {
+                scanf("%d %d",&b,&c);
+                update(1,1,siz,b+1,c);
+            }
+            else if( a == 3)
+            {
+                scanf("%d %d",&b,&c);
+                printf("%d\n",query(1,1,siz,b+1,c+1));
+            }
+        }
+    }
+    return 0;
+}
