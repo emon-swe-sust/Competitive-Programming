@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,k,i,j,ans;
+    cin >> n >> k;
+    vector<int>vec;
+    for(i=0;i<n;i++)
+    {
+        cin >> j;
+        vec.push_back(j);
+    }
+    for(i=k-1;i<vec.size();i++)
+    {
+        if(vec[k-1] != vec[i])
+        {
+            cout << -1 << endl;
+            return 0;
+        }
+    }
+    j=0;
+    for(i=k-2;i>=0;i--)
+    {
+        if(vec[i] == vec[k-1])
+                j++;
+        else break;
+    }
+    cout << k-j-1 << endl;
+    return 0;
+}
