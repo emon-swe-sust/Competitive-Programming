@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool bol[100000];
+
+int main()
+{
+    int n,i,j,k,l=0,m,dis;
+    map<int,vector<int> >mp;
+    map<int,vector<int> >::iterator it;
+    map<int,int>ans;
+    map<int,int>:: iterator itt;
+
+    cin >> n;
+    for(i=0;i<n;i++)
+    {
+        cin >> k;
+        mp[k].push_back(i+1);
+    }
+    for(it=mp.begin();it!=mp.end();it++)
+    {
+        m=it->first;
+        if(mp[m].size()==1)
+        {
+            ans[m]=0;
+            l++;
+            bol[m]=true;
+        }
+        else
+        {
+            bool tr=true;
+            dis = mp[m][1]-mp[m][0];
+            for(i=0;i<mp[m].size()-1;i++)
+            {
+                if((mp[m][i+1] - mp[m][i]) != dis)
+                {
+                    tr = false;
+                    break;
+                }
+            }
+            if(tr == true)
+            {
+                ans[m] = dis;
+                l++;
+                bol[m]=true;
+            }
+        }
+    }
+    cout << l << endl;
+    for(itt=ans.begin();itt!=ans.end();itt++)
+    {
+        int x = itt->first;
+        if(bol[x])
+        {
+            cout << x << " " << ans[x] << endl;
+        }
+    }
+    return 0;
+}
