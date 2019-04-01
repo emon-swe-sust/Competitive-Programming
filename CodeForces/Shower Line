@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long i,j,k,temp,m,n,arr[5][5],seq[] = {0,1,2,3,4},maxx = INT_MIN,a,b,c,d,e;
+    for(i=0;i<5;i++)
+    {
+        for(j=0;j<5;j++)
+        {
+            cin >> arr[i][j];
+        }
+    }
+
+    while(next_permutation(seq,seq+5))
+    {
+        a=seq[0];
+        b=seq[1];
+        c=seq[2];
+        d=seq[3];
+        e=seq[4];
+        temp = arr[a][b]+arr[b][a]+2*arr[c][d]+2*arr[d][c]+arr[b][c]+arr[c][b]+2*arr[d][e]+2*arr[e][d];
+        if(temp > maxx)
+            maxx = temp;
+    }
+    cout << maxx << endl;
+    return 0;
+}
