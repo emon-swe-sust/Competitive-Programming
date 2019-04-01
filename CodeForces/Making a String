@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    priority_queue<long long> qu;
+    vector<long long>vec;
+    long long ans=0,n,i,j;
+    cin >> n;
+    while(n--)
+    {
+        cin >> i;
+        qu.push(i);
+    }
+        vec.push_back(qu.top());
+        qu.pop();
+
+    while(!qu.empty())
+    {
+        int temp;
+        temp = qu.top();
+        qu.pop();
+        if(temp < vec[vec.size()-1])
+            vec.push_back(temp);
+        else
+        {
+            temp = vec[vec.size()-1]-1;
+            if(temp >=0)
+                vec.push_back(temp);
+        }
+    }
+    for(i=0;i<vec.size();i++)
+    {
+        ans+=vec[i];
+    }
+    cout << ans << endl;
+    return 0;
+}
