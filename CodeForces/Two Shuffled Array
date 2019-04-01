@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int siz,i,j,m,n,mi=0;
+    cin >> siz;
+    vector<int>vec;
+    vector<int>vec1;
+    for(i=0; i<siz; i++)
+    {
+        cin >> j;
+        vec.push_back(j);
+    }
+    sort(vec.begin(),vec.end());
+    for(i=0; i<siz-2; i++)
+    {
+        if((i+2) < siz)
+        {
+            if(vec[i] == vec[i+2])
+            {
+                cout << "NO" << endl;
+                return 0;
+            }
+        }
+    }
+    for(i=1; i<siz; i++)
+    {
+        if(vec[i] == vec[i-1])
+        {
+            vec1.push_back(vec[i-1]);
+            vec[i] = -1;
+            mi++;
+        }
+    }
+    cout << "YES" << endl;
+    if(vec1.size() != 0)
+    {
+        cout << vec1.size() << endl;
+        sort(vec1.begin(),vec1.end());
+        for(m = 0 ; m < vec1.size() ; m++)
+        {
+            cout << vec1[m] << " ";
+        }
+    }
+    else
+        cout << 0 << endl;
+    cout << endl;
+    cout << vec.size()-mi << endl;
+    sort(vec.begin(),vec.end());
+    for(m=vec.size()-1; m >=0 ; m--)
+    {
+        if(vec[m] != -1)
+            cout << vec[m] << " " ;
+    }
+    return 0;
+}
