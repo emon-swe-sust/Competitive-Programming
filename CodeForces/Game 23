@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long n,m,q,ans = 0;
+    cin >> n >> m;
+    if(m == n)
+    {
+        cout << 0 << endl;
+        return 0;
+    }
+    q = m/n;
+    if(m%n != 0)
+    {
+        cout << -1 << endl;
+        return 0;
+    }
+    while(q!=1 && q%6 == 0)
+    {
+        q/=6;
+        ans+=2;
+    }
+    while(q!=1 && q%2==0)
+    {
+        q = q/2;
+        ans++;
+    }
+    while(q!=1 && q%3 == 0)
+    {
+        q = q/3;
+        ans++;
+    }
+    if(q!=1)
+        ans = -1;
+    cout << ans << endl;
+    return 0;
+}
