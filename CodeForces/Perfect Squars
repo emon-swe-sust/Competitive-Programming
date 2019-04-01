@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int siz,i,in,maxx=INT_MIN,k;
+    float fl;
+    cin >> siz;
+    int mat[siz];
+
+    for(i=0; i<siz; i++)
+    {
+        cin >> k ;
+        if(k >= 0)
+        {
+            fl=sqrt(k);
+            if(fl != int(fl) && k > maxx)
+                maxx = k;
+        }
+        else if(k > maxx)
+            maxx = k;
+    }
+        cout << maxx << endl;
+        return 0;
+}
