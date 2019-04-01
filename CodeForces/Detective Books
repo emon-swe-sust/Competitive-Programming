@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,i,j,k,l,tar,cnt = 0;
+    bool get=false;
+    cin >> n;
+    int arr[n];
+    for(i=0;i<n;i++)
+    {
+        cin >> arr[i];
+    }
+    for(i=0;i<n;i++)
+    {
+        if(!get)
+        {
+            tar = arr[i];
+            get = true;
+        }
+        else
+        {
+            if(arr[i] > tar)
+                tar = arr[i];
+        }
+        if(i+1 == tar && get)
+        {
+            cnt++;
+            get = false;
+        }
+    }
+    cout << cnt << endl;
+    return 0;
+}
