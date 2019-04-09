@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n,m,i,j,k,sum=0;
+    cin >> n;
+    vector <int> vec;
+    for(i=0;i<n;i++)
+    {
+        cin >> m;
+        for(j=0;j<m;j++)
+        {
+            cin >> k;
+            vec.push_back(k);
+        }
+        for(j=vec.size()-1;j>0;j--)
+        {
+            for(k=j-1;k>=0;k--)
+            {
+                if(vec[j]>=vec[k])
+                    sum++;
+            }
+        }
+
+        cout << sum << endl;
+        sum=0;
+        vec.clear();
+    }
+
+}
