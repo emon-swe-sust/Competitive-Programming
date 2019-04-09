@@ -1,0 +1,85 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int e,i,j,k,l,test,st,don=0,tar=0,temp,van=0,best=0,din=0;
+    cin >> e;
+    vector<int>vec[e];
+    queue<int> srl;
+    vector<int>ans;
+    int visit[e],doon[e];
+    for(i=0;i<e;i++)
+    {
+        cin >> k;
+        while(k--)
+        {
+           cin >> l;
+           vec[i].push_back(l);
+        }
+    }
+    cin >> test;
+    for(i=0;i<test;i++)
+    {
+        memset(visit,0,sizeof(visit));
+        memset(doon,0,sizeof(doon));
+        //cout << "-";
+        cin >> st;
+        srl.push(st);
+        visit[st]=1;
+        doon[st]=1;
+        tar=1;
+        don=0;
+        best=0;
+        van=0;
+        din=0;
+        //cout << endl;
+        while(!srl.empty())
+        {
+            temp=srl.front();
+            srl.pop();
+            van++;
+            for(j=0;j<vec[temp].size();j++)
+            {
+                if(doon[vec[temp][j]]==0)
+                {
+                    don++;
+                   // cout << vec[temp][j] << "    " ;
+                    doon[vec[temp][j]]=1;
+                }
+            }
+
+            if(tar == van)
+            {
+
+                ans.push_back(don);
+               // cout << best << " " << din << endl;
+                tar=don;
+                don = 0;
+                van=0;
+            }
+            for(j=0;j<vec[temp].size();j++)
+            {
+                if(visit[vec[temp][j]]==0)
+                {
+                    srl.push(vec[temp][j]);
+                    visit[vec[temp][j]]=1;
+                }
+            }
+        }
+        for(j=0;j<ans.size();j++)
+        {
+            if(ans[j] > best)
+            {
+                best=ans[j];
+                din=j+1;
+            }
+        }
+        if(best!=0)
+            cout << best << " " << din << endl;
+        else
+            cout << 0 << endl;
+        ans.clear();
+    }
+    return 0;
+}
