@@ -1,0 +1,15 @@
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+    double angle1,r,n,b,area,angle;
+    while(scanf("%lf %lf",&r,&n)!=EOF)
+    {
+    angle=360/n;
+    angle1=(3.14159265358979323846*angle)/180;
+    b=sin(angle1);
+    area=n*0.5*r*r*b;
+    printf("%0.3lf\n",area);
+    }
+    return 0;
+}
