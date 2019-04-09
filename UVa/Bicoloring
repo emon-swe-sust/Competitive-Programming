@@ -1,0 +1,74 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int node;
+    while(1)
+    {
+        cin >> node;
+        if(node == 0)
+            break;
+        int n,edge,i,j,ans=1;
+        vector<int>clr[node];
+        int color[node];
+        bool parent[node];
+        queue<int>qu;
+        memset(color,0,sizeof(clr));
+        memset(parent,false,sizeof(parent));
+        cin >> edge;
+        while(edge--)
+        {
+            cin >> i >> j;
+            clr[i].push_back(j);
+            clr[j].push_back(i);
+        }
+        qu.push(0);
+        color[0] = 1;
+        parent[0] = true;
+        while(!qu.empty())
+        {
+            n = qu.front();
+            qu.pop();
+            parent[n] = true;
+            for(i=0;i<clr[n].size();i++)
+            {
+                if(parent[clr[n][i]] == false)
+                {
+                    qu.push(clr[n][i]);
+                    parent[clr[n][i]] = true;
+                }
+                if(color[n] == 1)
+                {
+                    if(color[clr[n][i]] == 1)
+                    {
+                        ans = 0;
+                        goto here;
+                    }
+                    else
+                    {
+                       color[clr[n][i]] = 2;
+                    }
+                }
+                else if(color[n] == 2)
+                {
+                    if(color[clr[n][i]] == 2)
+                    {
+                        ans = 0;
+                        goto here;
+                    }
+                    else
+                    {
+                        color[clr[n][i]] = 1;
+                    }
+                }
+            }
+        }
+    here:
+        if(ans == 0)
+            cout << "NOT BICOLORABLE." << endl;
+        else
+            cout << "BICOLORABLE." << endl;
+    }
+    return 0;
+}
