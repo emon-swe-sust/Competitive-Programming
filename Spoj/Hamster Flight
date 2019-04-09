@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+#include<math.h>
+using namespace std;
+
+int main()
+{
+    const double pi = 3.141592;
+    int test;
+    double ang,point,show,ans,v,k1,k2;
+    cin >> test;
+    while(test--)
+    {
+        cin >> v >> k1 >> k2;
+        if(k2!=0 && k1!=0)
+        {
+            ang=(4*k1)/k2;
+            ang=atan(ang);
+            ang=.5*(pi-ang);
+            ans=(k1*(v*v*sin(ang*2)))/10+(k2*(v*v*sin(ang)*sin(ang)))/20;
+        }
+        else if(k2!=0 && k1==0){
+            ang=1.571;
+            ans=(v*v*k2)/20;
+        }
+
+        else if(k2==0 && k1 !=0)
+        {
+            ang=0.785;
+            ans=(v*v*k1)/10;
+        }
+
+        printf("%.3lf %.3lf\n",ang,ans);
+    }
+    return 0;
+}
