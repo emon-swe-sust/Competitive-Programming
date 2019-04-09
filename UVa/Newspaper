@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int wnum,lnum,i,j,test,l,k,p;
+    double amount=0.0,value;
+    char word;
+    long long q;
+    string line;
+    cin >> test;
+    for(j=0;j<test;j++)
+    {
+        map<char,int>mymap;
+
+        cin >> wnum;
+
+        for(i=0;i<wnum;i++)
+        {
+            cin >> word >> value;
+            mymap[word]=value;
+        }
+
+        cin >> lnum;
+        getchar();
+
+        for(k=0;k<lnum;k++)
+        {
+            line="";
+            getline(cin,line);
+            for(i=0;i<line.size();i++)
+            {
+               amount+=mymap[line[i]];
+            }
+        }
+
+        amount = amount/100;
+        printf("%0.2lf$\n",amount);
+        amount = 0.0;
+        mymap.clear();
+
+    }
+    return 0;
+}
