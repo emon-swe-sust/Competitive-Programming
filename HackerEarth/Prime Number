@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,i,k,j;
+    cin >> n;
+    bool bo[n] ;
+    memset(bo,true,sizeof(bo));
+    for(i=2;i<sqrt(n);i++)
+    {
+        k=1;
+        for(j=2;k<n;j++)
+        {
+            k=i*j;
+            bo[k] = false;
+        }
+    }
+    for(i=2;i<=n;i++)
+    {
+        if(bo[i])
+            cout << i << " ";
+    }
+    return 0;
+}
