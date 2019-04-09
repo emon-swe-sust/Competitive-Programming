@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int test,x;
+    cin >> test;
+    for(x=0;x<test;x++)
+    {
+        int edge,que,i,j,k,l,m=0;
+        string from,to,temp,ans1="",ans="";
+        map<string, string> dad;
+        map<string , int> num;
+        map<string , int> ::iterator it;
+        cin >> edge >> que;
+        while(edge--)
+        {
+            cin >> from >> to;
+            dad[to] = from;
+            num[from] = 0;
+            num[to] = 0;
+        }
+        while(que--)
+        {
+            ans = "",ans1 = "";
+            cin >> from >> to;
+            temp = from;
+            while(1)
+            {
+                num[temp] = 1;
+                ans = ans + temp[0];
+                if(temp!= "Rome")
+                    temp = dad[temp];
+                if(temp == "Rome")
+                {
+                    num[temp] = 1;
+                    break;
+                }
+            }
+            temp = to;
+            while(1)
+            {
+                if(num[temp] != 1)
+                {
+                    ans1 = ans1+temp[0];
+                    num[temp] = 2;
+                    if(temp!="Rome")
+                        temp = dad[temp];
+                }
+                else
+                {
+                    num[temp] = 2;
+                    ans1 = ans1 + temp[0];
+                    break;
+                }
+                if(temp == "Rome")
+                {
+                        ans1 = ans1 + "R";
+                        break;
+                }
+            }
+            reverse(ans1.begin(),ans1.end());
+            for(i=0;i<ans.size();i++)
+            {
+                if(ans[i] != ans1[0])
+                    cout << ans[i];
+                else
+                    break;
+            }
+            cout << ans1 << endl;
+            for(it=num.begin();it!=num.end();it++)
+            {
+                num[it->first] = 0;
+            }
+        }
+        if(x != test-1)
+            cout << endl;
+    }
+        return 0;
+}
