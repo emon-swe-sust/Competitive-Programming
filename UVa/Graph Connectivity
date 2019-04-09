@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int test,m;
+    cin >> test;
+    for(m = 0 ; m < test; m++)
+    {
+        char en;
+        int k,i,j,ans = 0,temp1,temp2;
+        cin >> en;
+        temp1 = en - 'A';
+        vector<int>node[temp1+5];
+        string edge,d;
+        getline(cin,d);
+        bool visit[temp1+1];
+        memset(visit,false,sizeof(visit));
+        while(1)
+        {
+            getline(cin,edge);
+            if(edge == "")
+                break;
+            // cout << edge[0] << edge[0] - 'A' << edge[1] << edge[1]-'A';
+            node[edge[0]-'A'].push_back(edge[1]-'A');
+            node[edge[1]-'A'].push_back(edge[0]-'A');
+        }
+        queue<int>qu;
+        for(j = 0; j < temp1+1 ; j++)
+        {
+            if(!visit[j])
+            {
+                ans++;
+                //cout << 'a ';
+                qu.push(j);
+                visit[j] = true;
+                while(!qu.empty())
+                {
+                    k = qu.front();
+                    qu.pop();
+                    for(i=0; i<node[k].size(); i++)
+                    {
+                        if(visit[node[k][i]] == false)
+                        {
+                            qu.push(node[k][i]);
+                            visit[node[k][i]] = true;
+                        }
+                    }
+                }
+            }
+        }
+        if(m!=test-1)
+            cout << endl;
+        cout << ans << endl;
+    }
+}
