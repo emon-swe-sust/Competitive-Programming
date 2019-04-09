@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int i,n,q;
+    while(cin >>n && n!=0)
+    {
+        priority_queue<int,vector<int> ,greater<int> >que;
+        for(i=0;i<n;i++)
+        {
+           cin >> q;
+           que.push(q);
+        }
+
+        while(!que.empty())
+        {
+            cout << que.top();
+            if(que.size()!=1)
+                cout << " ";
+            que.pop();
+        }
+        cout << endl;
+    }
+}
