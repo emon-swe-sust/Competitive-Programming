@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+using namespace std;
+int arr[100000];
+int tree[3*100000];
+
+void start(int node,int b,int e)
+{
+    if(e == b)
+    {
+        tree[node] = arr[b] % 2;
+        //cout << b << " " << e << " " << node << " " << tree[node] << endl;
+        return;
+    }
+    int mid = (b+e)/2;
+    int left = node*2;
+    int right = node*2+1;
+    start(left,b,mid);
+    start(right,mid+1,e);
+    tree[node] = tree[left] + tree[right];
+   // cout << b << " " << e << " " << node << " " << tree[node] << endl;
+}
+
+void update(int node,int b,int e,int i,int val)
+{
+    if(b > i || e < i)
+        return ;
+    if(b == i && e == i)
+    {
+        arr[b] = val;
+        tree[node] = arr[b]%2;
+//cout << node << " - " << tree[node] << endl;
+        return ;
+    }
+    int left = node*2;
+    int right = node*2+1;
+    int mid = (b+e)/2;
+    update(left,b,mid,i,val);
+    update(right,mid+1,e,i,val);
+    tree[node] = tree[right]+tree[left];
+    return;
+}
+
+int query(int node,int b,int e,int i,int j)
+{
+    if(j < b || i > e)
+        return 0;
+    if(b >= i && e <= j)
+        return tree[node];
+    int mid = (b+e)/2;
+    int left = node*2;
+    int right = node*2+1;
+    int p1 = query(left,b,mid,i,j);
+    int p2 = query(right,mid+1,e,i,j);
+    return p1+p2;
+}
+
+int main()
+{
+    long long n,q,a,b,c,j,k,i;
+    cin >> n;
+    for(i=1;i<=n;i++)
+        cin >> arr[i];
+    start(1,1,n+1);
+    cin >> q;
+    while(q--)
+    {
+        cin >> a >> b >> c;
+        if(a == 0)
+        {
+            update(1,1,n+1,b,c);
+        }
+        else if(a == 1)
+        {
+            cout << (c-b+1)-query(1,1,n+1,b,c) << endl;
+        }
+        else
+            cout << query(1,1,n+1,b,c) << endl;
+    }
+    return 0;
+}
