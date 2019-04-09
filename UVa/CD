@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int m,n,i,j,M,N;
+    vector <int> jack;
+    vector <int> jill;
+    vector <int> amount;
+
+    while(cin >> m >> n && m!=0 && n!=0){
+    for(i=0;i<m;i++)
+    {
+        cin >> M;
+        jack.push_back(M);
+    }
+
+    for(i=0;i<n;i++)
+    {
+        cin >> M;
+        jill.push_back(M);
+    }
+
+    set_intersection(jack.begin(),jack.end(),jill.begin(),jill.end(),back_inserter(amount));
+
+    cout << amount.size() << endl;
+    amount.clear();
+    jack.clear();
+    jill.clear();
+
+    }
+
+    return 0;
+}
