@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int i,j,k,l;
+    cin >> j;
+    getchar();
+    for(i=0;i<j;i++)
+    {
+        string a;
+        char b;
+        getline(cin , a);
+        stack <char> st;
+        for(k=0;k<a.size();k++)
+        {
+           b=a[k];
+           if(b=='('||b=='[')
+                st.push(b);
+           else if((b==')'&&st.top()=='(') || (b==']'&&st.top()=='['))
+                st.pop();
+            else
+            {
+                cout << "No" << endl;
+                continue;
+            }
+        if(st.size()==0)
+            cout << "Yes" << endl;
+        else
+            cout << "No" << endl;
+        }
+    }
+    return 0;
+}
