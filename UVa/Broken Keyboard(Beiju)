@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string a;
+    int i,j,k;
+    while(cin >> a)
+    {
+        list <char> vec;
+        list <char>::iterator it;
+
+        it=vec.begin();
+
+        for(i=0;i<a.size();i++)
+        {
+            if(a[i]=='[')
+            {
+                it=vec.begin();
+            }
+            else if(a[i]==']')
+            {
+                it=vec.end();
+            }
+            else
+            {
+                it=vec.insert(it,a[i]);
+                it++;
+            }
+        }
+        for(it=vec.begin();it!=vec.end();it++)
+            {
+                cout << *it;
+            }
+            cout << endl;
+    }
+    return 0;
+}
