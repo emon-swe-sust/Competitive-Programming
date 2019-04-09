@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int a,num,num1=0,i,j,k;
+    long long sum=0;
+    priority_queue <int, vector<int>, greater <int> > vec;
+    vector <int> vec1;
+
+    while(cin >> a && a!=0)
+    {
+        while(a--)
+        {
+            cin >> num;
+            vec.push(num);
+        }
+
+       for(i=0;vec.size()>1;i++)
+       {
+           num1=vec.top();
+           vec.pop();
+           num1=num1+vec.top();
+           vec.pop();
+           vec1.push_back(num1);
+           vec.push(num1);
+       }
+
+       for(i=0;i<vec1.size();i++)
+       {
+           sum=sum+vec1[i];
+       }
+
+        cout << sum << endl;
+        sum=0;
+        num1=0;
+        vec1.clear();
+        vec.pop();
+    }
+    return 0;
+}
