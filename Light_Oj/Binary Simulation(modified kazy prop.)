@@ -1,0 +1,116 @@
+#include<bits/stdc++.h>
+using namespace std;
+int arr[100003];
+int tree[100003*4];
+int prop[100003*4];
+int prp = 0;
+ 
+void init(int node,int b,int e)
+{
+    if(b > e)
+        return;
+    if(b == e)
+    {
+        tree[node] = arr[b];
+        prop[node] = 0;
+        return;
+    }
+    int mid = (b+e)/2;
+    int left = node*2;
+    int right = node*2+1;
+    init(left,b,mid);
+    init(right,mid+1,e);
+    return;
+}
+ 
+void update(long long node,long long b,long long e,long long i,long long j)
+{
+    if(b > e)
+        return;
+    if(e < i || b > j)
+        return ;
+    if(b >= i && e <= j)
+    {
+        prop[node]++;
+        return;
+    }
+    long long left,right,mid;
+    mid = (b+e)/2;
+    left = node*2;
+    right = node*2+1;
+    update(left,b,mid,i,j);
+    update(right,mid+1,e,i,j);
+    return;
+}
+ 
+void query(long long node,long long b,long long e,long long i)
+{
+    if(b>e)
+        return;
+    if(e < i || b > i)
+        return ;
+    if(b == i && e == i)
+    {
+        prp += prop[node];
+        return;
+    }
+    long long left,right,mid;
+    mid = (b+e)/2;
+    left = node*2;
+    right = node*2+1;
+    prp += prop[node];
+    query(left,b,mid,i);
+    query(right,mid+1,e,i);
+    return ;
+}
+ 
+int main()
+{
+    long long test,t;
+    scanf("%lld",&test);
+    for(t=0;t<test;t++)
+    {
+        memset(arr,0,sizeof(arr));
+        memset(tree,0,sizeof(tree));
+        memset(prop,0,sizeof(prop));
+        long long siz,i,que;
+        char str[100003];
+        scanf("%s",str);
+        int x = strlen(str);
+        for(i=0;i<x;i++)
+        {
+            arr[i+1] = str[i]-'0';
+        }
+        init(1,1,x);
+        printf("Case %lld:\n",t+1);
+        //cin >> que ;
+        scanf("%lld",&que);
+        while(que--)
+        {
+            char c;
+            getchar();
+            scanf("%c",&c);
+            //cin >> c;
+            if(c == 'I')
+            {
+                long long from,to;
+                scanf("%lld %lld",&from,&to);
+                update(1,1,x,from,to);
+            }
+            else if(c == 'Q')
+            {
+                prp = 0;
+                long long n,k;
+                scanf("%lld",&n);
+                query(1,1,x,n);
+                if(prp%2 == 0)
+                    printf("%d\n",arr[n]);
+                else
+                {
+                    printf("%d\n",(arr[n]+1)%2);
+                }
+            }
+        }
+    }
+    return 0;
+}
