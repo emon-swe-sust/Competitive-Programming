@@ -1,0 +1,66 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,k,i,j,l,cnt = 0,top;
+    cin >> n >> k;
+    map<int,int>mp;
+    map<int,int>::reverse_iterator it;
+    map<int,int>::iterator iit;
+    string str="";
+    for(i=0;;i++)
+    {
+        if(n < 1)
+            break;
+
+        if(n%2==0)
+            str+='0';
+        else
+            str+='1';
+        n/=2;
+    }
+    for(i=0;i<str.size();i++)
+    {
+        if(str[i] == '1')
+        {
+            mp[pow(2,i)]++;
+            cnt++;
+        }
+    }
+    for(it = mp.rbegin();it!=mp.rend();it++)
+    {
+        top = it->first;
+        break;
+    }
+    while(1)
+    {
+        while(mp[top] > 0 && cnt < k && top != 1)
+        {
+            mp[top/2]+=2;
+            cnt++;
+            mp[top]--;
+            //cout << top << " " << mp[top] << endl;
+        }
+        if(cnt != k)
+            mp[top] = 0;
+        top/=2;
+        if(cnt == k)
+            break;
+        if(top == 0)
+        {
+            cout << "NO" << endl;
+            return 0;
+        }
+    }
+    cout << "YES" << endl;
+    for(iit=mp.begin();iit!=mp.end();iit++)
+    {
+        while(iit->second != 0)
+        {
+            cout << iit->first << " ";
+            iit->second--;
+        }
+    }
+    return 0;
+}
