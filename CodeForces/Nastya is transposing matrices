@@ -1,0 +1,103 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int siz,six,i,j,k,l,x,y;
+    cin >> siz >> six;
+    int arr[siz][six],brr[siz][six];
+    for(i=0;i<siz;i++)
+    {
+        for(j=0;j<six;j++)
+            cin >> arr[i][j];
+    }
+    for(i=0;i<siz;i++)
+    {
+        for(j=0;j<six;j++)
+            cin >> brr[i][j];
+    }
+
+    vector<int>veca[siz+six+5];
+    vector<int>vecb[siz+six+5];
+    for(i=0;i<six;i++)
+    {
+        k=0;l=i;
+        while(k < siz && l >= 0)
+        {
+            veca[i].push_back(arr[k][l]);
+            l--;
+            k++;
+        }
+    }
+
+    x = 1;
+    for(i=six;i<siz+six-1;i++)
+    {
+        k = x;
+        l = six-1;
+        while(k < siz && l >= 0)
+        {
+            veca[i].push_back(arr[k][l]);
+            k++;
+            l--;
+        }
+        x++;
+        if(x >= siz)
+            break;
+    }
+
+    for(i=0;i<six;i++)
+    {
+        k=0;l=i;
+        while(l >= 0 && k < siz)
+        {
+            vecb[i].push_back(brr[k][l]);
+            l--;
+            k++;
+        }
+    }
+
+    x = 1;
+    for(i=six;i<siz+six-1;i++)
+    {
+        k = x;
+        l = six-1;
+        while(k < siz && l >= 0)
+        {
+            vecb[i].push_back(brr[k][l]);
+            k++;
+            l--;
+        }
+        x++;
+        if(x >= siz)
+            break;
+    }
+
+
+
+
+
+    for(i=0;i<siz+six-1;i++)
+    {
+        sort(veca[i].begin(),veca[i].end());
+
+        sort(vecb[i].begin(),vecb[i].end());
+    }
+    for(i=0;i<siz+six-1;i++)
+    {
+        //cout << "SD" ;
+        for(j=0;j<veca[i].size();j++)
+        {
+            if(veca[i][j] != vecb[i][j])
+            {
+                cout << "NO" << endl;
+                return 0;
+            }
+            //cout << veca[i][j] << " " << vecb[i][j] << endl;
+
+        }
+    }
+    cout << "YES" << endl;
+
+    return 0;
+}
