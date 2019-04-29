@@ -1,0 +1,37 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,tar=0,i,j,k,l;
+    cin >> n;
+    string str;
+    cin >> str;
+    vector<int>lst;
+    for(i=0;i<n;i++)
+    {
+        if(str[i]-'0' == 8)
+        {
+            lst.push_back(i);
+            tar++;
+        }
+    }
+    if((n-11)/2 >= tar)
+    {
+        cout << "NO" << endl;
+        return 0;
+    }
+    if(lst.size() >= (n-11)/2)
+    {
+        lst.erase(lst.begin(),lst.begin()+((n-11)/2));
+        int m = lst[0]-(n-11)/2;
+        //cout << m << endl;
+        if(m <= ((n-11)/2))
+        {
+            cout << "YES" << endl;
+            return 0;
+        }
+    }
+    cout << "NO" << endl;
+    return 0;
+}
