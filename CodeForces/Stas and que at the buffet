@@ -1,0 +1,21 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long n,i,j,k,l,m,ans=0;
+    vector<pair<int,pair<int,int> > > pr;
+    cin >> n;
+    for(i=0;i<n;i++)
+    {
+        cin >> k >> l;
+        pr.push_back({l-k,{k,l}});
+    }
+    sort(pr.begin(),pr.end());
+    for(i=0;i<n;i++)
+    {
+        ans+=pr[i].second.first*i+pr[i].second.second*(n-1-i);
+    }
+    cout << ans << endl;
+    return 0;
+}
