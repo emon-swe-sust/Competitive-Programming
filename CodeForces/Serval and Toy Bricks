@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int len,wid,c,i,j,k,l,h,p,q;
+    cin >> wid >> len >> h;
+    int left[len],right[wid],mat[wid][len];
+    for(i=0;i<len;i++)
+        cin >> left[i];
+    for(i=0;i<wid;i++)
+        cin >> right[i];
+    for(i=0;i<wid;i++)
+    {
+        for(j=0;j<len;j++)
+        {
+            cin >> mat[i][j];
+            if(mat[i][j] == 1)
+            {
+                mat[i][j] = min(left[j],right[i]);
+            }
+        }
+    }
+    for(i=0;i<wid;i++)
+    {
+        for(j=0;j<len;j++)
+        {
+            cout << mat[i][j] << " ";
+        }
+        cout << endl;
+    }
+    return 0;
+}
