@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,m,i,j,k,fodd=0,sodd=0;
+    cin >> n >> m;
+    int arr[n],aar[m];
+    for(i=0;i<n;i++)
+    {
+        cin >> arr[i];
+        if(arr[i]%2==1)
+            fodd++;
+    }
+    for(i=0;i<m;i++)
+    {
+        cin >> aar[i];
+        if(aar[i]%2==1)
+            sodd++;
+    }
+    int ans=0;
+    ans=min(fodd,m-sodd)+min(n-fodd,sodd);
+    cout << ans << endl;
+    return 0;
+}
