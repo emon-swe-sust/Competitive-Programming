@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long n,minn=0,maxx=0;
+    cin >> n;
+    if(n%7 > 5)
+        minn++;
+    minn+=(n/7)*2;
+    maxx = (n/7)*2 ;
+    if(n%7 == 1)
+        maxx++;
+    else if(n%7 > 1)
+        maxx+=2;
+    cout << minn << " " << maxx << endl;
+    return 0;
+}
