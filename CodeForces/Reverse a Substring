@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int i,j, k,l,mx=INT_MIN,mn=INT_MAX,posm,posx;
+    
+    string str;
+    cin >> k;
+    cin >> str;
+    for(i=1;i<str.size();i++)
+    {
+        if(str[i] < str[i-1])
+            break;
+    }
+    if(i==str.size())
+    {
+        cout << "NO" << endl;
+        return 0;
+    }
+    cout <<"YES" << endl;
+    for(i=1;i<k;i++)
+    {
+        int a=str[i-1]-'a';
+        int b=str[i]-'a';
+        if(b<a)
+        {
+            cout << i << " " << i+1 << endl;
+            return 0; 
+        }
+    }
+}
