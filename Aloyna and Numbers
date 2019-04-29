@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long m,n,i,j;
+    cin >> m >> n;
+    long long arr[6]={0},brr[6]={0};
+    for(i=1;i<=5;i++)
+    {
+        arr[i] = m/5;
+        brr[i] = n/5;
+    }
+    m=m%5;
+    n=n%5;
+    for(i=1;i<=m;i++)
+    {
+        arr[i]++;
+    }
+    for(i=1;i<=n;i++)
+    {
+        brr[i]++;
+    }
+    cout << arr[1]*brr[4] + arr[2]*brr[3] + arr[3]*brr[2] + arr[4]*brr[1] + arr[5]*brr[5] << endl;
+    return 0;
+}
