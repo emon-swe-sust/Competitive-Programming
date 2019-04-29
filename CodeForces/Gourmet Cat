@@ -1,0 +1,79 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int fish,rabbit,chick,i,j,k,f,r,c,day=0,temp,d,Day = 0,x=0;
+    cin >> fish >> rabbit >> chick;
+    int t = 7;
+    for(i=1;;i++)
+    {
+        if(((i*2+i*2+i*3) <= fish+rabbit+chick) && (i*2) <= rabbit && (i*2) <= chick && (i*3) <= fish)
+        {
+            x++;
+        }
+        else
+        {
+            i--;
+            Day = (i*2+i*2+i*3);
+            fish = fish-i*3;
+            chick = chick - i*2;
+            rabbit = rabbit- i*2;
+            break;
+        }
+    }
+   // cout << Day << endl;
+    while(t--)
+    {
+        temp = 0;
+        d = 7-t;
+        f = fish;
+        r = rabbit;
+        c = chick;
+        while(1)
+        {
+
+            //int dd = d%7;
+
+            if(d%7 == 0 || d%7 == 5)
+            {
+                if(c > 0)
+                {
+                    c--;
+                    temp++;
+                    d++;
+                }
+                else
+                    break;
+            }
+            else if(d%7 == 1 || d%7 == 4)
+            {
+                if(r > 0)
+                {
+                    r--;
+                    temp++;
+                    d++;
+                }
+                else
+                    break;
+            }
+            else
+            {
+                if(f > 0)
+                {
+                    f--;
+                    temp++;
+                    d++;
+                }
+                else
+                    break;
+            }
+            if(temp >= fish+rabbit+chick)
+                break;
+        }
+        if(temp > day)
+            day = temp;
+    }
+    cout << day+Day << endl;
+    return 0;
+}
