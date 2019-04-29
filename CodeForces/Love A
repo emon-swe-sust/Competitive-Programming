@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,k,j=0,i;
+    string str;
+    cin >> str;
+    for(i=0;i<str.size();i++)
+    {
+        if(str[i] == 'a')
+            j++;
+    }
+    j = j*2-1;
+    k=str.size();
+    cout << min(j,k) << endl;
+    return 0;
+}
