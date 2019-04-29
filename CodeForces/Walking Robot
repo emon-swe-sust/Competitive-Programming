@@ -1,0 +1,72 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n,b,a,i,j,k,l,bb,aa,st= 0;
+    cin >> n >> b >> a;
+    bb = b;
+    aa =a;
+    int arr[n];
+    for(i=0;i<n;i++)
+    {
+        cin >> arr[i];
+    }
+    for(i=0;i<n;i++)
+    {
+        if(arr[i] == 0)
+        {
+            if(aa>0)
+            {
+                aa--;
+                st++;
+            }
+            else if(bb>0)
+            {
+                bb--;
+                st++;
+            }
+            else if(aa == 0 && bb == 0)
+            {
+                cout << st << endl;
+                return 0;
+            }
+        }
+        else if(arr[i] == 1)
+        {
+            if(aa == a)
+            {
+                aa--;
+                st++;
+            }
+            /*else if if(i<n-1)
+            {
+                if(arr[i+1] == 1)
+                {
+                    st+=2;
+                    bb--;
+                    i++;
+                    goto here;
+                }
+            }*/
+            else if(bb>0 )
+            {
+                bb--;
+                st++;
+                aa++;
+            }
+            else if(aa>0)
+            {
+                aa--;
+                st++;
+            }
+            else if(bb == 0 && aa == 0)
+            {
+                cout << st << endl;
+                return 0;
+            }
+        }
+    }
+    cout << st << endl;
+    return 0;
+}
