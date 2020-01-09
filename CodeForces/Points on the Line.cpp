@@ -1,6 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
-
+ 
 int main()
 {
    int a[105]={0},bal=0,d,n,i,ans=0,j,hi = INT_MIN,k;
@@ -9,7 +9,7 @@ int main()
    {
         cin >> k;
         a[k]++;
-
+ 
    }
    a[0]=0;
    for(i=1;i<=100;i++)
@@ -28,7 +28,7 @@ int main()
    cout << endl;*/
    for(i=1;i<=100-d;i++)
    {
-
+ 
        if(hi<(a[i+d]-a[i-1]))
        {
           hi = a[i+d]-a[i-1];
