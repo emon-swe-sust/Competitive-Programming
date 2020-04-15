@@ -32,7 +32,6 @@ int main()
                 long long dif = arr[i-1] - arr[i];
                 for(j=1;j<64;j++)
                 {
-                    //cout << i << " " << dif << " " << brr[j] << endl;
                     if(dif < brr[j])
                     {
                         ans = max(ans,j-1);
@@ -42,9 +41,7 @@ int main()
                 }
             }
         }
-
         cout << ans << endl;
     }
-
 	return 0;
 }
